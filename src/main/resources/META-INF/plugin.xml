@@ -1,0 +1,89 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.simform.studioplugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>SimformStudioPlugin</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@simform.com" url="https://www.simform.com/">Simform</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>Simform studio plugin for create base project from android, flutter template. Also includes some
+        features like Keystore Fingerprint Generator, Push Notification Tester,etc..
+    </description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable instance="com.simform.studioplugin.ui.mvvm.configure.MVVMTemplateConfigure"/>
+        <applicationService serviceImplementation="com.simform.studioplugin.ui.mvvm.configure.MVVMTemplateSettings"/>
+        <defaultLiveTemplates file="/liveTemplates/simform.xml"/>
+    </extensions>
+    <actions>
+        <action class="com.simform.studioplugin.ui.android_setup.CreateAndroidProject" id="androidprojectaction"
+                text="New Simform Android Project"
+                icon="AllIcons.Actions.AddFile">
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after"
+                          relative-to-action="WelcomeScreen.NewGroup"/>
+            <add-to-group group-id="NewGroup"/>
+        </action>
+        <action class="com.simform.studioplugin.ui.flutter_setup.CreateFlutterProject" id="flutterprojectaction"
+                text="New Simform Flutter Project"
+                icon="AllIcons.Actions.AddFile">
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after"
+                          relative-to-action="WelcomeScreen.NewGroup"/>
+            <add-to-group group-id="NewGroup"/>
+        </action>
+        <action class="com.simform.studioplugin.ui.keystore_info.KeystoreInfo" id="keystoreinfo"
+                text="Keystore Information" icon="AllIcons.CodeWithMe.CwmPermissions">
+            <add-to-group group-id="HelpMenu"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after"
+                          relative-to-action="WelcomeScreen.NewGroup"/>
+        </action>
+
+        <action class="com.simform.studioplugin.ui.firebase_tester.FirebaseTest" id="firebasetest"
+                text="Test Firebase Notification" icon="AllIcons.Webreferences.MessageQueue">
+            <add-to-group group-id="HelpMenu"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after"
+                          relative-to-action="WelcomeScreen.NewGroup"/>
+        </action>
+
+        <action class="com.simform.studioplugin.ui.libraries.LibrariesDetail" id="libdetail" text="Simform Libraries"
+                icon="AllIcons.ObjectBrowser.FlattenPackages">
+            <add-to-group group-id="HelpMenu"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after"
+                          relative-to-action="WelcomeScreen.NewGroup"/>
+        </action>
+        <!-- Add your actions here -->
+        <action id="MVVMActivityAction"
+                class="com.simform.studioplugin.ui.mvvm.MVVMActivityAction"
+                text="MVVMActivityAction"
+                description="Activity生成Action">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift meta A"/>
+        </action>
+
+        <action id="MVVMFragmentAction"
+                class="com.simform.studioplugin.ui.mvvm.MVVMFragmentAction"
+                text="MVVMFragmentAction"
+                description="Fragment生成Action">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift meta F"/>
+        </action>
+
+        <action class="com.simform.studioplugin.ui.command_checker.CommandChecker" id="commandchecker"
+                text="Command checker">
+            <add-to-group group-id="HelpMenu"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after"
+                          relative-to-action="WelcomeScreen.NewGroup"/>
+        </action>
+
+    </actions>
+</idea-plugin>

@@ -1,0 +1,28 @@
+<templateSet group="simform">
+  <template name="sfmactivity" value="import androidx.activity.viewModels&#10;import com.simform.firstapp.R&#10;import com.simform.firstapp.base.BaseAppCompatActivity&#10;import com.simform.firstapp.databinding.ActivitySampleBinding&#10;import com.simform.firstapp.viewmodel.SampleViewModel&#10;import dagger.hilt.android.AndroidEntryPoint&#10;&#10;@AndroidEntryPoint&#10;class $NAME$ : BaseAppCompatActivity&lt;$BINDING$, $VIEWMODEL$&gt;() {&#10;    override val viewModel: $VIEWMODEL$ by viewModels()&#10;&#10;    override fun getLayoutResId(): Int = R.layout.$LAYOUTID$&#10;&#10;    override fun initialize() {&#10;        super.initialize()&#10;    }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="kotlinPackageName()" defaultValue="" alwaysStopAt="false" />
+    <variable name="BINDING" expression="completeSmart()" defaultValue="" alwaysStopAt="true" />
+    <variable name="VIEWMODEL" expression="completeSmart()" defaultValue="" alwaysStopAt="true" />
+    <variable name="LAYOUTID" expression="completeSmart()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+  <template name="sfmlivedata" value="private val _$LIVEDATA$ = MutableLiveData&lt;$TYPE$&gt;()&#10;val $LIVEDATA$ : LiveData&lt;$TYPE$&gt;&#10;    get() = _$LIVEDATA$" toReformat="true" toShortenFQNames="true">
+    <variable name="LIVEDATA" expression="completeSmart()" defaultValue="" alwaysStopAt="true" />
+    <variable name="TYPE" expression="completeSmart()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+  <template name="sfmcenterhorizontal" value="app:layout_constraintLeft_toLeftOf=&quot;parent&quot;&#10;app:layout_constraintRight_toRightOf=&quot;parent&quot;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML_ATTRIBUTE" value="true" />
+    </context>
+  </template>
+  <template name="sfmcentervertical" value="app:layout_constraintTop_toTopOf=&quot;parent&quot;&#10;app:layout_constraintBottom_toBottomOf=&quot;parent&quot;" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML_ATTRIBUTE" value="true" />
+    </context>
+  </template>
+</templateSet>
