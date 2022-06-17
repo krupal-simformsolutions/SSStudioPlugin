@@ -4,11 +4,9 @@ import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.ui.DialogBuilder
 import com.intellij.openapi.ui.DialogWrapper
-import com.simform.studioplugin.utils.customview.isCookieCutterExist
-import com.simform.studioplugin.utils.customview.isFlutterExists
-import com.simform.studioplugin.utils.customview.isPythonExists
 import com.simform.studioplugin.ui.software_checker.softwareinstaller
 import com.simform.studioplugin.utils.OsCheck
+import com.simform.studioplugin.utils.customview.*
 
 abstract class ProjectSetupAction : AnAction() {
 
@@ -34,6 +32,12 @@ abstract class ProjectSetupAction : AnAction() {
             softwareinstaller.lblFlutter.isVisible = includeFlutter
             softwareinstaller.lblFlutterStatus.isVisible = includeFlutter
             softwareinstaller.btnFlutterInstall.isVisible = includeFlutter
+
+            softwareinstaller.which.addActionListener {
+                softwareExistPlainMessage(softwareinstaller.tfWhich.text) {
+                    softwareinstaller.tfWhich.text = it
+                }
+            }
 
             var flutterValidate = true
             if (includeFlutter) {

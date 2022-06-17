@@ -3,6 +3,7 @@ package com.simform.studioplugin.ui.software_checker
 import javax.swing.JButton
 import javax.swing.JLabel
 import javax.swing.JPanel
+import javax.swing.JTextField
 
 class softwareinstaller {
     lateinit var mainpanel: JPanel
@@ -14,4 +15,6 @@ class softwareinstaller {
     lateinit var lblFlutter: JLabel
     lateinit var btnFlutterInstall: JButton
     lateinit var btnContinue: JButton
+    lateinit var which: JButton
+    lateinit var tfWhich: JTextField
 }

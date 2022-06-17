@@ -153,3 +153,28 @@ fun softwareExistMessage(binaryName: String, callback: (String) -> Unit) {
         callback(e.message!!)
     }
 }
+
+fun softwareExistPlainMessage(binaryName: String, callback: (String) -> Unit) {
+    try {
+        var line: String?
+        val split=binaryName.split(" ")
+        val builder = ProcessBuilder(split[0],split[1])
+        builder.redirectErrorStream(true)
+        val process = builder.start()
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+        try {
+            process.waitFor()
+        } catch (e: InterruptedException) {
+            callback(e.message!!)
+        }
+        val errorStream = process.errorStream.bufferedReader()
+        while (reader.readLine().also { line = it } != null) {
+            callback(line!!)
+        }
+        while (errorStream.readLine().also { line = it } != null) {
+            callback(line!!)
+        }
+    } catch (e: Exception) {
+        callback(e.message!!)
+    }
+}
